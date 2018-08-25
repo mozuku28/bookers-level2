@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!
 
+
     def index
       @books = Book.all
       @book = Book.new
@@ -18,7 +19,8 @@ class BooksController < ApplicationController
 
     def edit
       @book = Book.find(params[:id])
-    end
+      certification
+      end
 
     def create
       @book = Book.new(book_params)
@@ -27,7 +29,10 @@ class BooksController < ApplicationController
         flash[:notice] = "successfully"
         redirect_to book_path(@book.id)
       else
-        render :partial => "list"
+        @books = Book.all
+        @book = @book #エラー情報を格納
+        logger.info(params[:action])
+        render :template => "books/index"
       end
     end
 
@@ -51,5 +56,10 @@ class BooksController < ApplicationController
     private
         def book_params
             params.require(:book).permit(:book_title, :book_opinion, :user_id)
+        end
+        def certification
+          if current_user.id != @book.user.id
+            redirect_to user_path(current_user.id)
+          end
         end
 end
