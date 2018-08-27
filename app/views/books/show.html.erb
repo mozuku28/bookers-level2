@@ -44,7 +44,7 @@
             </td>
 
             <td>
-                <%= link_to "Destroy", book_path(@books), method: :delete, class: "btn-sm btn-danger destroy_book_#{@books.id}","data-confirm" => "本当に削除しますか？" %>
+                <%= link_to "Destroy", book_path, method: :delete, class: "btn-sm btn-danger destroy_book_#{@books.id}","data-confirm" => "本当に削除しますか？" %>
             </td>
 
           <% end %>

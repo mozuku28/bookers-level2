@@ -50,7 +50,7 @@ class BooksController < ApplicationController
       book = Book.find(params[:id])
       book.destroy
       flash[:notice] = "successfully"
-      redirect_to root_path
+      redirect_to books_path
     end
 
     private
