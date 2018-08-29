@@ -28,7 +28,7 @@
 
     <% end %>
 
-    <%= link_to "Show", book_path(@book), class: "book_#{@book}" %>
+    <%= link_to "Show", book_path(@book), class: "book_#{@book.id}" %>
     |
     <%= link_to "Back", book_path, class: "back col-md-m3"%>
 
